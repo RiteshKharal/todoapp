@@ -18,7 +18,7 @@ export function ThemeToggle() {
       onClick={() =>
         setTheme(resolvedTheme === "dark" ? "light" : "dark")
       }
-      className="p-2 rounded bg-surface transition-colors"
+      className="p-2 rounded bg-surface transition-colors cursor-pointer"
     >
       {resolvedTheme === "dark" ? "🌞" : "🌙"}
     </button>

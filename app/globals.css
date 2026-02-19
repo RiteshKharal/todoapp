@@ -7,20 +7,37 @@
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary2:var(--primary2);
+  --color-border: var(--border)
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: hsla(0 0% 100% / 1);
+  --foreground: hsla(0 0% 0% / 0.99); /* black color btw */
+
+  /* --border: hsla(0 0% 100% / 0.5); */
+  --border: hsla(0 0% 0% / 0.5);
+
+  
+  --primary: hsla(180, 60%, 35%, 0.5);
+  --primary2:hsla(200, 70%, 60%, 0.1);
 }
 
 .dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: hsla(0 0% 0% / 0.99); /* black color btw */
+  --foreground: hsla(0 0% 100% / 0.99);
+
+  /* --border: hsla(0 0% 0% / 0.5); */
+  --border: hsla(0 0% 100% / 0.5);
+
+
+  --primary: hsla(180, 60%, 35%, 0.5);
+  --primary2:hsla(200, 50%, 60%, 0.1);
+
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
