@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={` antialiased ${fonts.geistMono.className}`}
+        className={` antialiased ${fonts.geistMono.className} bg-background/50`}
       >
 
         <ThemeProviderWrapper>
