@@ -16,7 +16,6 @@
   --background: hsla(0 0% 100% / 1);
   --foreground: hsla(0 0% 0% / 0.99); /* black color btw */
 
-  /* --border: hsla(0 0% 100% / 0.5); */
   --border: hsla(0 0% 0% / 0.5);
 
   
@@ -28,7 +27,6 @@
   --background: hsla(0 0% 0% / 0.99); /* black color btw */
   --foreground: hsla(0 0% 100% / 0.99);
 
-  /* --border: hsla(0 0% 0% / 0.5); */
   --border: hsla(0 0% 100% / 0.5);
 
 

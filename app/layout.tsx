@@ -3,13 +3,13 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProviderWrapper } from "./providers/ThemeProvider";
 import { ThemeToggle } from "./components/ThemeToggle";
-import * as fonts  from './fonts' 
+import * as fonts  from './font/fonts' 
 
 
 
 export const metadata: Metadata = {
-  title: "ToDoar",
-  description: "The most Customizable To Do app.",
+  title: "Tudor",
+  description: "A Customizable Minimalist To Do app.",
 };
 
 export default function RootLayout({

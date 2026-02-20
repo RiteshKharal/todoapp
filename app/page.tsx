@@ -1,10 +1,9 @@
 import Image from "next/image";
 import {ThemeToggle} from './components/ThemeToggle'
-import * as fonts from './fonts'
+import * as fonts from './font/fonts'
+import TaskCard from "./components/TaskCard";
 
 export default function Home() {
-        console.log(new Date().getDate())
-
   return (
     <div className="flex items-center justify-center  font-sans bg-background">
       <main className="flex w-full max-w-3xl flex-col items-center justify-between p-10  sm:items-start">
@@ -12,7 +11,7 @@ export default function Home() {
         <nav className="top-10 flex justify-between w-full ">
 
           <div className={`text-xl ${fonts.lilitaOne.className}`} >
-            ToDoar
+            Tudor
           </div>
 
           <div>
@@ -43,8 +42,10 @@ export default function Home() {
       </section>
 
 
-      <section className="mt-[10%]">
-        <h1 className={`text-2xl ${fonts.lilitaOne.className}`}> Tasks</h1>
+      <section className="mt-[10%] w-full mb-[10%]">
+        <h1 className={`text-2xl ${fonts.lilitaOne.className} mb-[2%]`}> Tasks</h1>
+        <TaskCard title="Wash the dishes" desc="Wash the dishes from new york properly and on time" date="2029-19-36"/>
+
       </section>
         
       </main>
