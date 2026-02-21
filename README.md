@@ -1,8 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 ToDoApp
 
-## Getting Started
+A modern, customizable task management web application built with **Next.js**.
+ToDoApp helps users organize daily tasks efficiently with a clean interface and flexible personalization options.
 
-First, run the development server:
+---
+
+## ✨ Description
+
+**ToDoApp** is designed to simplify productivity. It allows users to manage, organize, and customize their daily workflow in an intuitive environment. Built with performance and scalability in mind, it provides a seamless experience across devices.
+
+---
+
+## 💼 Features
+
+* ✅ Create, edit, and delete tasks
+* 🏷️ Task categorization and organization
+* 🎨 Customizable interface
+* 🌙 Theme customization
+* ⚡ Fast and responsive UI
+* 💾 Persistent task storage
+
+---
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/RiteshKharal/todoapp.git
+```
+
+Navigate into the project directory:
+
+```bash
+cd todoapp
+```
+
+Install dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+---
+
+## ⭐ Getting Started
+
+Run the development server:
 
 ```bash
 npm run dev
@@ -14,23 +64,29 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and visit:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The app will automatically reload as you make changes.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠 Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Next.js**
+* **React**
+* **JavaScript / TypeScript**
+* **CSS / Tailwind CSS**
+* **Node.js**
+* **PostgreSql**
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📄 License
 
-## Deploy on Vercel
+This project is licensed under the **MIT License**.
+You are free to use, modify, and distribute this project with proper attribution.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
