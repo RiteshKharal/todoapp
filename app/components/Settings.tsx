@@ -33,7 +33,7 @@ export default function Settings() {
             <div className="flex flex-col gap-4 w-full items-center">
               {/* <span className="font-semibold text-lg">Select Theme</span> */}
 
-              {/* <div className="flex gap-4">
+              {/* <div className="flex gap-4 ">
                 <button
                   className={`px-4 py-2 rounded ${
                     resolvedTheme === 'light'
