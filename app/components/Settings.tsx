@@ -5,7 +5,7 @@ import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useTheme } from 'next-themes';
 
 export default function Settings() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(!true);
   const { resolvedTheme, setTheme } = useTheme();
 
   return (
