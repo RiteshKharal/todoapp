@@ -3,6 +3,7 @@ import {ThemeToggle} from './components/ThemeToggle'
 import * as fonts from './font/fonts'
 import TaskCard from "./components/TaskCard";
 import Settings from './components/Settings';
+import Accmanager from "./components/accmanager";
 
 export default function Home() {
   return (
@@ -17,9 +18,9 @@ export default function Home() {
 
           <div>
 
-          <div className="flex flex-row gap-5">
+          <div className="flex flex-row gap-5 text-center justify-center">
             <Settings/>
-            <ThemeToggle/>
+            <Accmanager cardtype="signup"/>
             </div>
          </div>
         </nav>

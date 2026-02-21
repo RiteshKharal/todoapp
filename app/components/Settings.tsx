@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { IoSettings } from 'react-icons/io5';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useTheme } from 'next-themes';
+import { ThemeToggle } from './ThemeToggle';
 
 export default function Settings() {
   const [open, setOpen] = useState(!true);
@@ -13,7 +14,7 @@ export default function Settings() {
       <IoSettings
         onClick={() => setOpen(true)}
         cursor="pointer"
-        className=" text-2xl"
+        className=" text-xl"
       />
 
       {open && (
@@ -64,8 +65,9 @@ export default function Settings() {
                   System
                 </button>
               </div> */}
+              <span className='flex flex-row gap-10'><p>Theme:</p><ThemeToggle/></span>
 
-              Settings Coming Soon!
+              More Settings Coming Soon!
             </div>
           </div>
         </div>
