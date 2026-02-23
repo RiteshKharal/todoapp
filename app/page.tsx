@@ -19,8 +19,9 @@ export default function Home() {
           <div>
 
           <div className="flex flex-row gap-5 text-center justify-center">
-            <Settings/>
             <Accmanager cardtype="signup"/>
+            <Settings/>
+            
             </div>
          </div>
         </nav>
@@ -28,7 +29,7 @@ export default function Home() {
 
       {/* INPUT TAKING SECTION */}
       <section className=" w-full mt-[10%] ">
-        <form className="flex flex-col gap-5"> {/* NEED TO ADD THE DB ADDings LATER, TO DO 😀😀 */}
+        <form className="flex flex-col gap-5"> 
 
         <input type="text" name="TaskTitle" placeholder="Task" className="p-2 border border-border rounded-sm" required/>
 

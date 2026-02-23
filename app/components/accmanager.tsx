@@ -1,7 +1,8 @@
 'use client';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 import * as fonts from '@/app/font/fonts'
 import {acc,logacc, getUser} from './SignUp'
+import { MdAccountCircle } from "react-icons/md";
 
 
 type AccManagerProps = {
@@ -20,6 +21,7 @@ export default function Accmanager({ cardtype }: AccManagerProps) {
 
 const [user, setUser] = useState<UserType | null>(null)
   const [lstype, setLstype] = useState<string | null>(null)
+  const [out,setOut] = useState<ReactElement | null >(null)
 
   
     async function fetchUser() {
@@ -28,7 +30,6 @@ const [user, setUser] = useState<UserType | null>(null)
         }
 
   useEffect(() => {
-    
     fetchUser()
   }, [])
 
@@ -55,12 +56,16 @@ const [user, setUser] = useState<UserType | null>(null)
                     type="email"
                     placeholder="Email"
                     className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
+                    name='email'
+                    required
                     />
 
                     <input
                     type="password"
                     placeholder="Password"
+                    name='password'
                     className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
+                    required
                     />
                 </div>
 
@@ -130,26 +135,46 @@ const [user, setUser] = useState<UserType | null>(null)
             )
         }
         
-        function options(){
-          return user ? (
-    <div
-      className={`bg-primary p-2 text-sm rounded-xl ${fonts.cabin.className} cursor-pointer`}
-    >
-      {user.name}
-    </div>
-  ) : (
-    <div
-      onClick={() => setLstype('Signup')}
-      className={`bg-primary p-2 text-sm rounded-xl ${fonts.cabin.className} cursor-pointer`}
-    >
-      Sign Up
-    </div>
-  );
-          
+        function options() {
+  user
+    ? setOut(
+        <div
+          className={`
+            flex items-center gap-2
+            rounded-2xl
+            backdrop-blur-md
+            transition-all duration-200
+            cursor-pointer
+            ${fonts.comfortaa.className}
+          `}
+        >
+          <MdAccountCircle className="text-2xl text-primary" />
+          <span className="text-[1rem] font-medium">
+            {user.name}
+          </span>
+        </div>
+      )
+    : setOut(
+        <div
+          onClick={() => setLstype("Signup")}
+          className={`
+            rounded-2xl
+            text-foreground
+            text-sm font-semibold
+            shadow-md
+            hover:shadow-lg
+            hover:scale-105
+            transition-all duration-200
+            cursor-pointer
+            ${fonts.cabin.className}
+          `}
+        >
+          Sign Up
+        </div>
+      );
+}
 
-        }
-
-        // useEffect(options,[user])
+        useEffect(options,[user])  
 
 
   return (
@@ -157,7 +182,7 @@ const [user, setUser] = useState<UserType | null>(null)
 
     
 
-      {options()}
+      {out}
 
       {lstype && (
         <div className="fixed inset-0 z-50 flex justify-center items-center backdrop-blur-sm">

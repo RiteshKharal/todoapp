@@ -41,8 +41,9 @@ export async function acc(formdata: FormData){
 }
 
  export async function logacc(formdata: FormData){
-    const Email = formdata.get('email')?.toString() || ''
-  const pass = formdata.get('password')?.toString() || ''
+
+    const Email = formdata.get('email')?.toString()
+  const pass = formdata.get('password')?.toString()
 
 
     user = await  prisma.user.findUnique({
@@ -50,29 +51,33 @@ export async function acc(formdata: FormData){
         email: Email,
       }
     })
-
     if (!user) return;
 
-  const PassMatch =await bcrypt.compare(pass,user.password)
+  if (!pass) return;
 
+  const PassMatch =await bcrypt.compare(pass,user.password)
   if(!PassMatch) return;
 
-  (await cookies()).set('UID', user.id)
+  (await cookies()).set('UID', user.id,{
+    secure:true,
+    maxAge:60*60*24*9
+  })
 
-  // return user;
   
 }
 
 export async function getUser(){
   const usid= (await cookies()).get('UID')?.value
 
-  if (!usid) return;
+  if (!usid) return null;
 
-  return prisma.user.findUnique({
+  const u = prisma.user.findUnique({
     where:{
       id:usid
     }
   })
+
+  return u
 }
 
 
