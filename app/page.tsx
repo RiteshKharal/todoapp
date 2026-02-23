@@ -1,11 +1,14 @@
 import Image from "next/image";
 import {ThemeToggle} from './components/ThemeToggle'
 import * as fonts from './font/fonts'
-import TaskCard from "./components/TaskCard";
+// import TaskCard from "./components/TaskCard";
 import Settings from './components/Settings';
-import Accmanager from "./components/accmanager";
+import Accmanager from "./backend/accmanager";
+import TaskManager, { UserTasks } from "./backend/TaskManager";
+import { TasksSection } from "./components/TaskCard";
 
 export default function Home() {
+
   return (
     <div className="flex items-center justify-center  font-sans">
       <main className="flex w-full max-w-3xl flex-col items-center justify-between p-10  sm:items-start">
@@ -27,9 +30,9 @@ export default function Home() {
         </nav>
       
 
-      {/* INPUT TAKING SECTION */}
+      {/* Task INPUT TAKING SECTION */}
       <section className=" w-full mt-[10%] ">
-        <form className="flex flex-col gap-5"> 
+        <form className="flex flex-col gap-5" action={TaskManager}> 
 
         <input type="text" name="TaskTitle" placeholder="Task" className="p-2 border border-border rounded-sm" required/>
 
@@ -37,7 +40,7 @@ export default function Home() {
 
         <div className="w-full justify-between flex items-center">
 
-        <input type="date" name="TaskDueTime" placeholder="Task Due time " className="p-2 bg-primary2 rounded-xl cursor-pointer " min={new Date().toISOString().split("T")[0]}/>
+        <input type="date" name="TaskDueTime" placeholder="Task Due time " className="p-2 bg-primary2 rounded-xl cursor-pointer " min={new Date().toISOString().split("T")[0]} defaultValue={new Date().toISOString().split("T")[0]}/>
         <input type="submit" className={`p-3 bg-primary rounded-xl ${fonts.geistMono.className } cursor-pointer hover:bg-primary/90`} />
 
         </div>
@@ -48,8 +51,7 @@ export default function Home() {
 
       <section className="mt-[10%] w-full mb-[10%]">
         <h1 className={`text-2xl ${fonts.lilitaOne.className} mb-[2%]`}> Tasks</h1>
-        <TaskCard title="Wash the dishes" desc="Wash the dishes from new york properly and on time" date="2029-19-36"/>
-
+        <TasksSection></TasksSection>
       </section>
         
       </main>

@@ -4,6 +4,8 @@ import * as fonts from '../font/fonts'
 import { useState, useRef, useEffect } from 'react'
 import { FiChevronDown, FiCheck } from 'react-icons/fi'
 import { HiDotsHorizontal } from "react-icons/hi";
+import TaskManager, { UserTasks } from "../backend/TaskManager";
+
 
 type TaskCardProps = {
   title: string
@@ -11,7 +13,7 @@ type TaskCardProps = {
   date: string
 }
 
-export default function TaskCard({ title, desc, date }: TaskCardProps) {
+export  function TaskCard({ title, desc, date }: TaskCardProps) {
   const [checked, setChecked] = useState(false)
 
   const completedStyles = checked
@@ -43,19 +45,6 @@ export default function TaskCard({ title, desc, date }: TaskCardProps) {
           </span>
         </div>
 
-        {/* <div
-          className={`w-5 h-5 rounded-md border-2 flex items-center justify-center
-          transition-all duration-200
-          ${checked 
-            ? 'bg-green-500 border-green-500' 
-            : 'border-gray-400'}`}
-        >
-          {checked && (
-            <div className="w-2.5 h-2.5 bg-white rounded-sm" />
-          )}
-        </div> */}
-
-        
       </div>
 
       <p className={`text-sm leading-relaxed ${completedStyles || 'text-foreground/60'}`}>
@@ -68,6 +57,44 @@ export default function TaskCard({ title, desc, date }: TaskCardProps) {
     </>
   )
 }
+
+type TasksType = {
+  id:number,
+  title: string,
+  description: string | null,
+  date: string,
+  read: boolean
+}
+
+export function TasksSection(){
+  const [tasks, setTasks] = useState<TasksType[] | null>(null)
+
+  async function GetTasks() {
+    const t = await UserTasks()
+
+    if(t) setTasks(t ?? null);
+  }
+
+  useEffect(() => {
+    GetTasks();
+  }, [setTasks]);
+
+  return(
+    <section className='flex gap-5 flex-col'>
+    {tasks && 
+      tasks.map((task)=>(
+    <TaskCard 
+    key={task.id}
+    title={task.title}
+    desc={task.description || ''}
+    date={task.date}
+    />))
+  }
+  </section>
+  )
+
+}
+
 
 function DropDown(){
   const [open, setOpen] = useState<Boolean>(false)

@@ -12,7 +12,6 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({adapter});
 
-let user;
 
 type acctypes = {
   email:string,
@@ -46,7 +45,7 @@ export async function acc(formdata: FormData){
   const pass = formdata.get('password')?.toString()
 
 
-    user = await  prisma.user.findUnique({
+    const user = await  prisma.user.findUnique({
       where:{
         email: Email,
       }
@@ -62,6 +61,8 @@ export async function acc(formdata: FormData){
     secure:true,
     maxAge:60*60*24*9
   })
+
+  redirect('/')
 
   
 }

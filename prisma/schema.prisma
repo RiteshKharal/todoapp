@@ -24,7 +24,7 @@ model user {
 model task{
   id Int @id @default(autoincrement())
   title String 
-  description String
+  description String?
   date String
   read Boolean @default(false)
   user user @relation(fields: [userId], references: [id])
