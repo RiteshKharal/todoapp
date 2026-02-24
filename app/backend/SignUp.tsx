@@ -12,10 +12,6 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({adapter});
 
-// function getCookieStore() {
-//   return cookies();
-// }
-
 
 type acctypes = {
   email:string,

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import {ThemeToggle} from './components/ThemeToggle'
 import * as fonts from './font/fonts'
-// import TaskCard from "./components/TaskCard";
 import Settings from './components/Settings';
 import Accmanager from "./backend/accmanager";
-import TaskManager, { UserTasks } from "./backend/TaskManager";
+import TaskManager from "./backend/TaskManager";
 import { TasksSection } from "./components/TaskCard";
+
 export const dynamic = 'force-dynamic'
 
 export default function Home() {
