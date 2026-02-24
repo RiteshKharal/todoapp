@@ -3,7 +3,7 @@ import React from 'react'
 import { PrismaClient } from '../generated/prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { redirect } from 'next/navigation';
-import { getUser } from '../components/SignUp';
+import { getUser } from './SignUp';
 
 const adapter = new PrismaPg({
   connectionString: process.env.DATABASE_URL!,

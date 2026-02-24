@@ -12,6 +12,8 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({adapter});
 
+const CookieStore= await cookies()
+
 
 type acctypes = {
   email:string,
@@ -57,9 +59,11 @@ export async function acc(formdata: FormData){
   const PassMatch =await bcrypt.compare(pass,user.password)
   if(!PassMatch) return;
 
-  (await cookies()).set('UID', user.id,{
+   CookieStore.set('UID', user.id,{
     secure:true,
-    maxAge:60*60*24*9
+    maxAge:60*60*24*9,
+    httpOnly:true,
+    path:'/',
   })
 
   redirect('/')
@@ -68,7 +72,7 @@ export async function acc(formdata: FormData){
 }
 
 export async function getUser(){
-  const usid= (await cookies()).get('UID')?.value
+  const usid= CookieStore.get('UID')?.value
 
   if (!usid) return null;
 

@@ -6,6 +6,7 @@ import Settings from './components/Settings';
 import Accmanager from "./backend/accmanager";
 import TaskManager, { UserTasks } from "./backend/TaskManager";
 import { TasksSection } from "./components/TaskCard";
+export const dynamic = 'force-dynamic'
 
 export default function Home() {
 
