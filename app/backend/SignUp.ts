@@ -64,16 +64,17 @@ export async function acc(formdata: FormData){
     maxAge:60*60*24*9,
     httpOnly:true,
     path:'/',
+    sameSite:'strict',
   })
 
-  redirect('/')
+  // redirect('/')
 
 
 }
 
 export async function getUser(){
-  const CookieStore = await cookies();
-  const usid = ( CookieStore).get('UID')?.value;
+  const CookieStore = cookies();
+  const usid = ( await CookieStore).get('UID')?.value;
 
   if (!usid) return null;
 

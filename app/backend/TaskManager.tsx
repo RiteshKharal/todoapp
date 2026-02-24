@@ -11,10 +11,9 @@ const adapter = new PrismaPg({
 });
 
 const prisma = new PrismaClient({adapter});
-const user = await getUser() ?? null 
-
 
 export default async function TaskManager(formdata : FormData) {
+    const user = await getUser();
     const Task = formdata.get('TaskTitle')?.toString()
     const TaskDesc = formdata.get('TaskDesc')?.toString() || null 
     const TaskDate = formdata.get('TaskDueTime')?.toString()
@@ -33,8 +32,8 @@ export default async function TaskManager(formdata : FormData) {
 }
 
 export async function UserTasks() {
+    const user = await getUser();
     if(!user) return null;
-  
 
   const tasks = await prisma.task.findMany({
     where: { 
