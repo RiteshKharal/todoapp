@@ -12,7 +12,10 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({adapter});
 
-const CookieStore= await cookies()
+// helper to obtain the request-scoped cookie store
+async function getCookieStore() {
+  return await cookies();
+}
 
 
 type acctypes = {
@@ -59,6 +62,8 @@ export async function acc(formdata: FormData){
   const PassMatch =await bcrypt.compare(pass,user.password)
   if(!PassMatch) return;
 
+   // set cookie on the current request/response
+   const CookieStore =  await getCookieStore();
    CookieStore.set('UID', user.id,{
     secure:true,
     maxAge:60*60*24*9,
@@ -72,7 +77,8 @@ export async function acc(formdata: FormData){
 }
 
 export async function getUser(){
-  const usid= CookieStore.get('UID')?.value
+  const CookieStore = await getCookieStore();
+  const usid = CookieStore.get('UID')?.value;
 
   if (!usid) return null;
 
@@ -80,9 +86,9 @@ export async function getUser(){
     where:{
       id:usid
     }
-  })
+  });
 
-  return u
+  return u;
 }
 
 
