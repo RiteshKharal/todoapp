@@ -29,6 +29,9 @@ export default async function TaskManager(formdata : FormData) {
         }
 
     })
+
+    return 'Success'
+    
 }
 
 export async function UserTasks() {
@@ -41,7 +44,7 @@ export async function UserTasks() {
         
      },
     orderBy: { 
-        date: 'asc' 
+        date: 'desc' 
     },
   });
 

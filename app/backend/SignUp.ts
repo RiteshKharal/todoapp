@@ -37,6 +37,7 @@ export async function acc(formdata: FormData){
 
     logacc(formdata)
 
+    return 'Success'
 }
 
  export async function logacc(formdata: FormData){
@@ -67,8 +68,7 @@ export async function acc(formdata: FormData){
     sameSite:'strict',
   })
 
-  // redirect('/')
-
+  return 'Success' ;
 
 }
 

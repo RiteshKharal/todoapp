@@ -3,6 +3,7 @@ import React, { useState, useEffect, ReactElement } from 'react'
 import * as fonts from '@/app/font/fonts'
 import {acc,logacc, getUser} from './SignUp'
 import { MdAccountCircle } from "react-icons/md";
+import { redirect } from 'next/navigation';
 
 
 type AccManagerProps = {
@@ -33,11 +34,32 @@ const [user, setUser] = useState<UserType | null>(null)
     fetchUser()
   }, [])
 
+  async function HandleSignSubmit(formdata: FormData) {
+    const result = await acc(formdata);
+
+    if (result && result.toLowerCase().includes('success')) {
+      setLstype(null);
+    }
+    fetchUser()
+    redirect('/')
+
+  }
+  async function HandleLogSubmit(formdata: FormData) {
+    const result = await logacc(formdata);
+
+    if (result && result.toLowerCase().includes('success')) {
+      setLstype(null);
+    }
+    fetchUser()
+    redirect('/')
+
+  }
+
 
   
         function Login({ close }: { close: () => void }) {
             return (
-                <div className="relative w-full max-w-md bg-primary rounded-2xl p-8 flex flex-col">
+                <div className="relative w-full max-w-md text-primary rounded-2xl p-8 flex flex-col bg-secondary">
 
                 <button
                     onClick={close}
@@ -50,12 +72,12 @@ const [user, setUser] = useState<UserType | null>(null)
                     Log onto Account
                 </h2>
 
-              <form action={logacc}>
+              <form action={HandleLogSubmit}>
                 <div className="flex flex-col gap-5 flex-1">
                     <input
                     type="email"
                     placeholder="Email"
-                    className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
+                    className="w-full p-3 rounded-lg outline-none focus:ring-1 focus:ring-primary/10 border border-border"
                     name='email'
                     required
                     />
@@ -64,12 +86,12 @@ const [user, setUser] = useState<UserType | null>(null)
                     type="password"
                     placeholder="Password"
                     name='password'
-                    className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
+                    className="w-full p-3 rounded-lg  outline-none focus:ring-1 focus:ring-primary/10 border border-border"
                     required
                     />
                 </div>
 
-                <button className="mt-8 bg-primary/30 hover:bg-primary/40 transition p-3 rounded-xl font-medium cursor-pointer" type='submit'>
+                <button className="mt-8 bg-primary hover:bg-primary/90 text-primary-foreground transition p-3 rounded-xl font-medium cursor-pointer" type='submit'>
                     Log in
                 </button>
                 </form>
@@ -83,7 +105,7 @@ const [user, setUser] = useState<UserType | null>(null)
 
         function Signup({ close }: { close: () => void }) {
             return (
-                <div className="relative w-full max-w-md bg-primary rounded-2xl p-8 flex flex-col">
+                <div className="relative w-full max-w-md text-primary rounded-2xl p-8 flex flex-col bg-secondary">
 
                 <button
                     onClick={close}
@@ -96,35 +118,32 @@ const [user, setUser] = useState<UserType | null>(null)
                     Create Account
                 </h2>
 
-                <form action={acc}>
+                <form action={HandleSignSubmit}>
 
                 <div className="flex flex-col gap-5 flex-1">
                   <input
-                    type="text"
-                    placeholder="Username"
-                    name='name'
-                    className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
-                    required
-                    />
+                  type="text"
+                  name="name"
+                  placeholder="Username"
+                  className="w-full p-3 rounded-lg text-foreground outline-none focus:ring-2 focus:ring-primary/10 transition-all border-border"
+                />
 
-                    <input
-                    type="email"
-                    placeholder="Email"
-                    className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
-                    name='email'
-                    required
-                    />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="w-full p-3 rounded-lg text-foreground outline-none focus:ring-1 focus:ring-primary/10 transition-all border border-border" 
+                />
 
-                    <input
-                    type="password"
-                    placeholder="Password"
-                    name='password'
-                    className="w-full p-3 rounded-lg bg-primary/20 outline-none focus:ring-2 focus:ring-primary/40"
-                    required
-                    />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="w-full p-3 rounded-lg text-foreground outline-none focus:ring-2 focus:ring-primary/10 transition-all"
+                />
                 </div>
 
-                <button type='submit' className="mt-8 bg-primary/30 hover:bg-primary/40 transition p-3 rounded-xl font-medium cursor-pointer" >
+                <button type='submit' className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90 transition p-3 rounded-xl font-medium cursor-pointer" >
                     Sign Up
                 </button>
 
@@ -134,6 +153,7 @@ const [user, setUser] = useState<UserType | null>(null)
                 </div>
             )
         }
+        
         
         function options() {
   user
@@ -159,9 +179,8 @@ const [user, setUser] = useState<UserType | null>(null)
           onClick={() => setLstype("Signup")}
           className={`
             rounded-2xl
-            text-foreground
+            text-primary
             text-sm font-semibold
-            shadow-md
             hover:shadow-lg
             hover:scale-105
             transition-all duration-200
