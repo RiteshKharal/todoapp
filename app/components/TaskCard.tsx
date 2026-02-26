@@ -142,7 +142,7 @@ export function Task() {
             type="date"
             name="TaskDueTime"
             placeholder="Task Due time"
-            className="p-2 rounded-xl cursor-pointer"
+            className="p-2 rounded-xl cursor-pointer accent-foreground"
             min={new Date().toISOString().split("T")[0]}
             defaultValue={new Date().toISOString().split("T")[0]}
           />
