@@ -4,6 +4,7 @@ import { IoSettings } from 'react-icons/io5';
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { useTheme } from 'next-themes';
 import { ThemeToggle } from './ThemeToggle';
+import * as fonts from '../font/fonts'
 
 export default function Settings() {
   const [open, setOpen] = useState(!true);
@@ -18,8 +19,8 @@ export default function Settings() {
       />
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center  backdrop-blur-md transition-all ">
-          <div className="relative bg-secondary  rounded-xl w-[50%] h-[70%] p-6 flex flex-col text-center transition-all">
+        <div className="fixed inset-0 z-50 flex items-center justify-center  backdrop-blur-xl border border-border shadow-2xl shadow-foreground transition-all ">
+          <div className={`relative bg-secondary  rounded-xl w-[50%] h-[70%] p-6 flex flex-col text-center font-semibold transition-all ${fonts.inconsolata.className } pl-10`} >
             
             <button
               className="absolute top-4 left-4 flex items-center gap-1 px-3 py-1 rounded cursor-pointer hover:-translate-x-1 transition-all"
@@ -28,12 +29,11 @@ export default function Settings() {
               <IoIosArrowRoundBack size={20} /> Close
             </button>
 
-            <h2 className="text-2xl font-bold mb-6">Settings</h2>
+            <h2 className="text-2xl font-bold mb-10">Settings</h2>
 
-            <div className="flex flex-col gap-4 w-full items-center">
-              <span className='flex flex-row gap-10'><p>Theme:</p><ThemeToggle/></span>
-
-              More Settings Coming Soon!
+            <div className="flex flex-col gap-4 w-full">
+              <h1 className='flex flex-row gap-10 text-xl'><p>Select Theme:</p></h1>
+            <ThemeToggle/>
             </div>
           </div>
         </div>

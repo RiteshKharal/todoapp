@@ -2,6 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Theme variables */
 @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -13,8 +14,9 @@
   --color-border: hsl(var(--border));
 }
 
-
-:root {
+/* WHITE THEME */
+:root,
+.light {
   --background: 0 0% 100%;
   --foreground: 0 0% 5%;
 
@@ -26,7 +28,7 @@
   --secondary: 0 0% 97%;
 }
 
-
+/* DARK THEME */
 .dark {
   --background: 0 0% 5%;
   --foreground: 0 0% 96%;
@@ -39,7 +41,39 @@
   --secondary: 0 0% 8%;
 }
 
+/* BLUE THEME */
+.blue {
+  --background: 210 100% 15%;
+  --foreground: 210 100% 95%;
+
+  --border: 210 100% 40%;
+
+  --primary: 210 100% 50%;
+  --primary-foreground: 210 100% 95%;
+
+  --secondary: 210 100% 20%;
+}
+
+/* RED THEME */
+.red {
+  --background: 0 70% 15%; 
+  --foreground: 0 0% 96%; 
+
+  --border: 0 0% 20%;
+
+  --primary: 0 80% 50%;     
+  --primary-foreground: 0 0% 95%;
+
+  --secondary: 0 70% 20%;
+}
+
 body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.ColorThemeCard {
+  @apply w-10 h-10 rounded-full border border-border cursor-pointer
+         transition-transform transform hover:scale-110;
 }

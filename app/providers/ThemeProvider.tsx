@@ -10,11 +10,15 @@ export function ThemeProviderWrapper({
 }) {
   return (
     <ThemeProvider
-      {...({
-        attribute: "class",
-        defaultTheme: "system",
-        enableSystem: true,
-      } )}
+      attribute="class"
+      defaultTheme="system"
+      enableSystem={true}
+      value={{
+        light: "light",
+        dark: "dark",
+        blue: "blue",
+        red:'red',
+      }}
     >
       {children}
     </ThemeProvider>

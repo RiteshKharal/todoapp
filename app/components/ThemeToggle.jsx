@@ -15,13 +15,23 @@ export function ThemeToggle() {
   if (!mounted) return null;
 
   return (
-    <button
-      onClick={() =>
-        setTheme(resolvedTheme === "dark" ? "light" : "dark")
-      }
-      className=" rounded bg-surface transition-colors cursor-pointer"
-    >
-      {resolvedTheme === "dark" ? <FaSun />: <FaMoon/>}
-    </button>
+    // <button
+    //   onClick={() =>
+    //     setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    //   }
+    //   className=" rounded bg-surface transition-colors cursor-pointer"
+    // >
+    //   {resolvedTheme === "dark" ? <FaSun />: <FaMoon/>}
+    // </button>
+
+    <div className="flex gap-5">
+      <button className="ColorThemeCard bg-white" onClick={()=>{setTheme('light')}}></button>
+      
+      <button className="ColorThemeCard bg-black" onClick={()=>{setTheme('dark')}}></button>
+      
+      <button className="ColorThemeCard bg-blue-900" onClick={()=>{setTheme('blue')}}> </button>
+
+      <button className="ColorThemeCard bg-red-900" onClick={()=>{setTheme('red')}}> </button>
+    </div>
   );
 }
