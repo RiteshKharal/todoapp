@@ -43,10 +43,33 @@ export async function UserTasks() {
         userId:user.id,
         
      },
-    orderBy: { 
-        date: 'desc' 
-    },
+    orderBy: [
+        {date: 'desc'},
+        {read:'asc'}
+    ],
   });
 
   return tasks;
+}
+
+export async function ToggleTask(TaskID:number) {
+    const user = await getUser();
+    if(!user) return null;
+
+    const crnttask = await prisma.task.findUnique({
+        where:{
+            userId:user.id,
+            id:TaskID
+        }
+    })
+
+  await prisma.task.update({
+    where:{
+        id:TaskID
+    },
+    data:{
+        read: !crnttask?.read,
+    }
+  });
+
 }

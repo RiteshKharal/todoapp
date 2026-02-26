@@ -5,6 +5,7 @@ import { FiChevronDown, FiCheck } from 'react-icons/fi'
 import { HiDotsHorizontal } from "react-icons/hi";
 import TaskManager, { UserTasks } from "../backend/TaskManager";
 import { IoCheckmarkCircleOutline, IoEllipsisHorizontal } from 'react-icons/io5';
+import { ToggleTask } from '../backend/TaskManager';
 
 
 type TaskCardProps = {
@@ -12,13 +13,18 @@ type TaskCardProps = {
   desc: string
   date: string
   read: boolean
+  readToggle:Function
 }
 
 
-export function TaskCard({ title, desc, date, read }: TaskCardProps) {
+export function TaskCard({ title, desc, date, read,readToggle }: TaskCardProps) {
   const [checked, setChecked] = useState(read ?? false)
   const completed = checked
   const hasDesc = Boolean(desc)
+
+  useEffect(()=>{
+    readToggle()
+  },[checked])
 
   return (
     <button
@@ -151,7 +157,9 @@ export function Task() {
 
   function TasksSection() {
 
-    
+      async function UpdRead(TaskID:number) {
+    ToggleTask(TaskID)
+  }
 
     return (
       <section className="flex flex-col gap-5">
@@ -163,6 +171,7 @@ export function Task() {
               desc={task.description || ''}
               date={task.date}
               read={task.read}
+              readToggle={()=>{UpdRead(task.id)}}
             />
           ))
         }
