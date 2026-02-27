@@ -8,9 +8,54 @@ import * as fonts  from './font/fonts'
 
 
 export const metadata: Metadata = {
-  title: "Tudor",
-  description: "A Customizable Minimalist To Do app.",
+  metadataBase: new URL("https://tudortodo.vercel.app"),
+
+  title: {
+    default: "TudorTodo",
+    template: "%s | TudorTodo",
+  },
+
+  description:
+    "TudorTodo is a customizable minimalist to-do app built with Next.js for focused productivity.",
+
+  authors: [{ name: "RK | Red" }],
+  creator: "RK | Red",
+  publisher: "TudorTodo",
+
+  alternates: {
+    canonical: "/",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
+
+  openGraph: {
+    title: "TudorTodo",
+    description:
+      "A customizable minimalist to-do app designed for focus and productivity.",
+    url: "https://tudortodo.vercel.app",
+    siteName: "TudorTodo",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "TudorTodo",
+    description:
+      "A customizable minimalist to-do app designed for focus and productivity.",
+  },
+
+  category: "technology",
 };
+
+
 
 export default function RootLayout({
   children,

@@ -2,7 +2,7 @@ import Image from "next/image";
 import {ThemeToggle} from './components/ThemeToggle'
 import * as fonts from './font/fonts'
 import Settings from './components/Settings';
-import Accmanager from "./backend/accmanager";
+import Accmanager from "./components/accmanager";
 import TaskManager, { UserTasks } from "./backend/TaskManager";
 import { Task } from "./components/TaskCard";
 

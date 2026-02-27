@@ -87,6 +87,7 @@ export function TaskCard({ title, desc, date, read,readToggle }: TaskCardProps) 
             text-xs font-semibold
             ${completed ? 'text-primary/50 bg-primary/20' : ''}
           `}
+          title={date}
         >
           {date}
         </div>

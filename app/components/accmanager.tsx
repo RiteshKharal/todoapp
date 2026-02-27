@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, ReactElement } from 'react'
 import * as fonts from '@/app/font/fonts'
-import {acc,logacc, getUser} from './SignUp'
+import {acc,logacc, getUser} from '../backend/SignUp'
 import { MdAccountCircle } from "react-icons/md";
 import { redirect } from 'next/navigation';
 
