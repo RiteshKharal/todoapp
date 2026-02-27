@@ -22,14 +22,20 @@ export function TaskCard({ title, desc, date, read,readToggle }: TaskCardProps) 
   const completed = checked
   const hasDesc = Boolean(desc)
 
-  useEffect(()=>{
-    readToggle()
-  },[checked])
+  useEffect(() => {
+    setChecked(read ?? false)
+  }, [read])
+
+  function handleclick() {
+    const newChecked = !checked
+    setChecked(newChecked)
+    readToggle(newChecked)
+  }
 
   return (
     <button
       type="button"
-      onClick={() => setChecked(prev => !prev)}
+      onClick={() => handleclick()}
       aria-pressed={checked}
       title="Mark as Done"
       className={`
@@ -155,12 +161,12 @@ export function Task() {
     )
   }
 
-  function TasksSection() {
-
-      async function UpdRead(TaskID:number) {
-    ToggleTask(TaskID)
+  async function handleToggle(taskId: number, state: boolean) {
+    await ToggleTask(taskId, state)
+    UpdateTasks()
   }
 
+  function TasksSection() {
     return (
       <section className="flex flex-col gap-5">
         {tasks &&
@@ -171,7 +177,7 @@ export function Task() {
               desc={task.description || ''}
               date={task.date}
               read={task.read}
-              readToggle={()=>{UpdRead(task.id)}}
+              readToggle={(state: boolean) => handleToggle(task.id, state)}
             />
           ))
         }
