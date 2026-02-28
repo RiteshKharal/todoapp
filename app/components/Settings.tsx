@@ -20,7 +20,7 @@ export default function Settings() {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center  backdrop-blur-xl border border-border shadow-2xl shadow-foreground transition-all ">
-          <div className={`relative bg-secondary  rounded-xl w-[50%] h-[70%] p-6 flex flex-col text-center font-semibold transition-all ${fonts.inconsolata.className } pl-10`} >
+          <div className={`relative bg-secondary/60  rounded-xl w-[45%] h-[70%] p-6 flex flex-col text-center font-semibold transition-all ${fonts.inconsolata.className } pl-10 border border-border`} >
             
             <button
               className="absolute top-4 left-4 flex items-center gap-1 px-3 py-1 rounded cursor-pointer hover:-translate-x-1 transition-all"
@@ -29,6 +29,7 @@ export default function Settings() {
               <IoIosArrowRoundBack size={20} /> Close
             </button>
 
+          
             <h2 className="text-2xl font-bold mb-10">Settings</h2>
 
             <div className="flex flex-col gap-4 w-full">
