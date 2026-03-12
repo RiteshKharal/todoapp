@@ -1,11 +1,12 @@
 'use client'
-import React, { useState, useEffect } from 'react'
-import * as fonts from '../font/fonts'
-import { FiChevronDown, FiCheck } from 'react-icons/fi'
-import { HiDotsHorizontal } from "react-icons/hi";
-import TaskManager, { UserTasks } from "../backend/TaskManager";
+import React, { useState, useEffect } from 'react';
+import * as fonts from '../font/fonts';
+import { FiChevronDown, FiCheck } from 'react-icons/fi';
+import { HiDotsHorizontal } from 'react-icons/hi';
+import TaskManager, { UserTasks } from '../backend/TaskManager';
 import { IoCheckmarkCircleOutline, IoEllipsisHorizontal } from 'react-icons/io5';
 import { ToggleTask } from '../backend/TaskManager';
+import { useSession } from '@/app/lib/auth-client';
 
 
 type TaskCardProps = {
@@ -107,11 +108,23 @@ type TasksType = {
 
 
 export function Task() {
-  const [tasks, setTasks] = useState<TasksType[] | null>(null)
-  
+  const session = useSession();
+  const user = session?.data?.user;
+  const [tasks, setTasks] = useState<TasksType[] | null>(null);
+
   useEffect(() => {
+    if (user) {
       UpdateTasks();
-    }, [])
+    }
+  }, [user]);
+
+  if (!user) {
+    return (
+      <div className='py-8 text-center text-sm text-foreground/70'>
+        Please sign in to manage your tasks.
+      </div>
+    );
+  }
 
   async function UpdateTasks() {
     const t = await UserTasks()

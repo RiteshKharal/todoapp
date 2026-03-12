@@ -2,24 +2,28 @@
 
 import React from 'react'
 import { redirect } from 'next/navigation';
-import { getUser } from './SignUp';
-import { prisma } from '../lib/prisma';
+import { prisma } from '../lib/auth';
+// import { useSession } from '../lib/auth-client';
+import { auth } from '../lib/auth';
+import { headers } from 'next/headers';
 
 
 export default async function TaskManager(formdata : FormData) {
-    const user = await getUser();
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
     const Task = formdata.get('TaskTitle')?.toString()
     const TaskDesc = formdata.get('TaskDesc')?.toString() || null 
     const TaskDate = formdata.get('TaskDueTime')?.toString()
 
-    if (!Task || !TaskDate || !user) return;
+    if (!Task || !TaskDate || !session) return;
 
     await prisma.task.create({
         data:{
             title: Task,
             description: TaskDesc,
             date:TaskDate,
-            userId: user.id
+            userId: session.user.id
         }
 
     })
@@ -29,12 +33,14 @@ export default async function TaskManager(formdata : FormData) {
 }
 
 export async function UserTasks() {
-    const user = await getUser();
-    if(!user) return null;
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+    if(!session) return null;
 
   const tasks = await prisma.task.findMany({
     where: { 
-        userId:user.id,
+        userId:session.user.id,
         
      },
     orderBy: [
@@ -48,12 +54,14 @@ export async function UserTasks() {
 }
 
 export async function ToggleTask(TaskID: number, state: boolean) {
-    const user = await getUser();
-    if(!user) return null;
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+    if(!session) return null;
 
     const crnttask = await prisma.task.findFirst({
         where:{
-            userId:user.id,
+            userId:session.user.id,
             id:TaskID
         }
     })
