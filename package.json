@@ -9,8 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@better-auth/core": "^1.5.5",
     "@better-auth/infra": "^0.1.11",
-    "@better-auth/prisma-adapter": "^1.5.4",
+    "@better-auth/prisma-adapter": "^1.5.5",
     "@prisma/adapter-pg": "^7.4.1",
     "@prisma/client": "^7.4.2",
     "bcrypt": "^6.0.0",

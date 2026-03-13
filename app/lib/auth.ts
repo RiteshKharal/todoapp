@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth"
 import { PrismaClient } from "../generated/prisma/client"
 import { prismaAdapter } from "@better-auth/prisma-adapter"
 import { PrismaPg } from "@prisma/adapter-pg"
-// import { transporter } from "./mail"
+import { dash } from "@better-auth/infra"
 import { sendEmail } from "@better-auth/infra"
 
 const adapter = new PrismaPg({
@@ -17,6 +17,9 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+  plugins:[
+    dash(),
+  ],
 
   emailAndPassword: {
     enabled: true,
